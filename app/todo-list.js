@@ -1,3 +1,5 @@
+import Todo from './todo.js'
+
 const getTodos = async () => {
   let todos = await fetch('http://localhost:555/api/todo/list')
   console.log(todos)
@@ -11,19 +13,8 @@ export default async function TodoList() {
     <div className="mt-10">
       <h2>Do</h2>
       <ul>
-        {todos.map((t) => {
-          return (
-            <li key={t.id}>
-              <label class="cursor-pointer label">
-                <input
-                  type="checkbox"
-                  checked={t.isDone}
-                  class="checkbox checkbox-success mx-5"
-                />
-                <span class="label-text">{t.name}</span>
-              </label>
-            </li>
-          )
+        {todos.map((todo) => {
+          return <Todo todo={todo} key="todos" />
         })}
       </ul>
     </div>
