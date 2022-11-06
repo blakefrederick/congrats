@@ -18,8 +18,6 @@ async function deleteTodo(id, refresh) {
     method: 'DELETE',
   })
 
-  console.log(response)
-
   refresh()
 }
 
