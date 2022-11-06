@@ -13,7 +13,8 @@
     "eslint-config-next": "13.0.2",
     "next": "13.0.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.42.0",
