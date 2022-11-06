@@ -1,11 +1,10 @@
-'use client'
-
 import Image from 'next/image'
 import styles from './page.module.css'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
+import TodoList from './todo-list'
 
 export default function Home() {
-  const router = useRouter()
+  // const router = useRouter()
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -51,9 +50,11 @@ export default function Home() {
           </div>
         </div>
 
-        <button class="btn btn-success m-10" onClick={() => router.refresh()}>
+        <TodoList />
+
+        {/* <button class="btn btn-success m-10" onClick={() => router.refresh()}>
           Refresh
-        </button>
+        </button> */}
       </main>
 
       <footer className={styles.footer}></footer>

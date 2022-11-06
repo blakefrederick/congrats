@@ -14,7 +14,7 @@ let todos = [
   {
     id: uuidv4(),
     name: 'Generate AI self',
-    isDone: false,
+    isDone: true,
   },
 ]
 
