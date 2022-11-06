@@ -3,14 +3,21 @@
 import { useRouter } from 'next/navigation'
 
 async function update(id, isDone, refresh) {
-  await fetch('http://localhost:555/api/todo/update', {
+  await fetch('/api/todo/update', {
     method: 'POST',
-    mode: 'no-cors',
     body: JSON.stringify({ id, isDone }),
   })
   {
     /* Note about the need for router.refresh here: https://beta.nextjs.org/docs/data-fetching/mutating */
   }
+  refresh()
+}
+
+async function deleteTodo(id, refresh) {
+  await fetch(`/api/todo/delete?id=${id}`, {
+    method: 'DELETE',
+  })
+
   refresh()
 }
 
@@ -20,17 +27,24 @@ export default function Todo({ todo }) {
   return (
     <>
       <li key={todo.id}>
-        <label class="cursor-pointer label">
+        <label className="cursor-pointer label">
           <input
             type="checkbox"
-            class="checkbox checkbox-success mx-5"
+            className="checkbox checkbox-success mx-5 border-2"
             checked={todo.isDone}
             onChange={(e) => {
               update(todo.id, e.target.checked, router.refresh)
             }}
           />
-          <span class="label-text">{todo.name}</span>
-          {/* <button class="btn">Delete</button> */}
+          <span className="label-text">{todo.name}</span>
+          <button
+            className="btn btn-xs btn-error mx-2 text-white text-2xs opacity-90"
+            onClick={() => {
+              deleteTodo(todo.id, router.refresh)
+            }}
+          >
+            X
+          </button>
         </label>
       </li>
     </>

@@ -51,10 +51,6 @@ export default function Home() {
         </div>
 
         <TodoList />
-
-        {/* <button class="btn btn-success m-10" onClick={() => router.refresh()}>
-          Refresh
-        </button> */}
       </main>
 
       <footer className={styles.footer}></footer>
