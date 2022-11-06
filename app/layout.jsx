@@ -8,7 +8,14 @@ export default function RootLayout({ children }) {
         head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        <header className="bg-purple-700">
+          <p className="text-2xs text-white px-1">
+            If you're reading this, congrats
+          </p>
+        </header>
+        {children}
+      </body>
     </html>
   )
 }
