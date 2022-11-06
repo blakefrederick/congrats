@@ -14,9 +14,11 @@ async function update(id, isDone, refresh) {
 }
 
 async function deleteTodo(id, refresh) {
-  await fetch(`/api/todo/delete?id=${id}`, {
+  const response = await fetch(`/api/todo/delete?id=${id}`, {
     method: 'DELETE',
   })
+
+  console.log(response)
 
   refresh()
 }

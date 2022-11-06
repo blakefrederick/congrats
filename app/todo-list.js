@@ -2,7 +2,7 @@ import Todo from './todo.js'
 
 const getTodos = async () => {
   // Note the next.config.js rewrites don't apply here because this is a server component
-  let todos = await fetch('http://localhost:555/api/todo/list')
+  let todos = await fetch('http://localhost:3333/api/todo/list')
   return todos.json()
 }
 
