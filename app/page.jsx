@@ -1,7 +1,11 @@
+'use client'
+
 import Image from 'next/image'
 import styles from './page.module.css'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const router = useRouter()
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -46,6 +50,10 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <button class="btn btn-success m-10" onClick={() => router.refresh()}>
+          Refresh
+        </button>
       </main>
 
       <footer className={styles.footer}></footer>
