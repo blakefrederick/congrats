@@ -2,6 +2,7 @@ import Image from 'next/image'
 import styles from './page.module.css'
 // import { useRouter } from 'next/navigation'
 import TodoList from './todo-list'
+import AddNewTodo from './add-todo'
 
 export default function Home() {
   // const router = useRouter()
@@ -51,6 +52,7 @@ export default function Home() {
         </div>
 
         <TodoList />
+        <AddNewTodo />
       </main>
 
       <footer className={styles.footer}></footer>
