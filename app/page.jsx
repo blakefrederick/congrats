@@ -9,10 +9,13 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome!</h1>
+        <h1 className={styles.title}>Hey!</h1>
 
-        <div className="text-xl m-10 font-bold">
-          Take a look at this fake skeleton loader pulsing infinitely
+        <TodoList />
+        <AddNewTodo />
+
+        <div className="text-xl mt-40 font-bold">
+          Something is loading... or is it?
         </div>
 
         <div className="border border-blue-300 shadow rounded-md p-4 m-4 max-w-sm w-full mx-auto">
@@ -31,8 +34,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="text-l m-10 mt-20 font-bold">
-          Now bouncing infinitely
+        <div className="text-l mt-10 mb-5 mt-20 font-bold">
+          macOS getting your attention
         </div>
 
         <div className="border border-green-300 shadow rounded-md p-4 m-4 max-w-sm w-full mx-auto animate-bounce">
@@ -50,9 +53,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        <TodoList />
-        <AddNewTodo />
       </main>
 
       <footer className={styles.footer}></footer>

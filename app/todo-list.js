@@ -11,7 +11,8 @@ export default async function TodoList() {
 
   return (
     <div className="mt-10">
-      <h2 className="font-bold">{todos.length ? 'Do' : 'Done!'}</h2>
+      <h2 className="font-bold">{todos.length ? 'Do' : 'Congrats!'}</h2>
+      {!todos.length && <div></div>}
       <ul>
         {todos.map((todo) => {
           return <Todo todo={todo} key={todo.id} />

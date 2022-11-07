@@ -20,7 +20,7 @@ export default function AddNewTodo() {
   const [input, setInput] = useState('')
 
   return (
-    <div className="m-2">
+    <div className="m-6">
       <input
         type="text"
         className="input input-success input-sm"
