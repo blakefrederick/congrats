@@ -37,4 +37,5 @@ canvas {
   top: 0;
   left: 0;
   height: 900px;
+  pointer-events: none;
 }
