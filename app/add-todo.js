@@ -4,6 +4,9 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 async function addTodo(input, refresh) {
+  if (!input) {
+    return
+  }
   await fetch(`/api/todo/add`, {
     method: 'POST',
     body: JSON.stringify({ input }),
