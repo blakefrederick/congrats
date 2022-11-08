@@ -1,19 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
 import * as confetti from 'canvas-confetti'
 
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-
-export default function Confetti({ todo }) {
-  const router = useRouter()
-
-  useEffect(() => {
-    var confetArea = document.createElement('canvas')
-    var target = document.getElementById('confetti-target')
-
-    target.appendChild(confetArea)
-
+export default function Confetti() {
+  const goConfetti = () => {
+    var confetArea = document.getElementById('confetti-target')
     var yayConfetti = confetti.create(confetArea, {
       resize: true,
       useWorker: true,
@@ -22,11 +14,19 @@ export default function Confetti({ todo }) {
       particleCount: 400,
       spread: 160,
     })
+  }
+  useEffect(() => {
+    goConfetti()
   }, [])
 
   return (
     <>
-      <div id="confetti-target"></div>
+        <canvas
+          id="confetti-target"
+          onClick={() => {
+            goConfetti()
+          }}
+        ></canvas>
     </>
   )
 }
