@@ -3,8 +3,21 @@ import Confetti from './confetti.js'
 
 const getTodos = async () => {
   // Note the next.config.js rewrites don't apply here because this is a server component
-  let todos = await fetch('http://localhost:3333/api/todo/list')
-  return todos.json()
+  return await fetch('http://localhost:3333/api/todo/list')
+    .then((todos) => {
+      return todos.json()
+    })
+    .catch(() => {
+      return {
+        todos: [
+          {
+            id: 'default',
+            isDone: false,
+            name: 'Find the API, it is not around',
+          },
+        ],
+      }
+    })
 }
 
 export default async function TodoList() {
