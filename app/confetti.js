@@ -19,7 +19,7 @@ export default function Confetti({ todo }) {
       useWorker: true,
     })
     yayConfetti({
-      particleCount: 300,
+      particleCount: 400,
       spread: 160,
     })
   }, [])
