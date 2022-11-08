@@ -5,8 +5,6 @@ import * as confetti from 'canvas-confetti'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-async function deleteTodo(id, refresh) {}
-
 export default function Confetti({ todo }) {
   const router = useRouter()
 
