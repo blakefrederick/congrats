@@ -1,13 +1,16 @@
 import { v4 as uuidv4 } from 'uuid'
 import { prisma } from '../../../app/db/client'
 
-export const addTodo = (name) => {
-  let newTodo = {
-    id: uuidv4(),
-    name,
-    isDone: false,
-  }
-  todos.push(newTodo)
+export const addTodo = async (name) => {
+  const todo = await prisma.Todos.create({
+    data: {
+      id: uuidv4(),
+      name,
+      isDone: false,
+    },
+  })
+
+  return todo
 }
 
 export async function deleteTodo(id) {
