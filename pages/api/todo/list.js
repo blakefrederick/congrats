@@ -10,10 +10,22 @@ export const addTodo = (name) => {
   todos.push(newTodo)
 }
 
-export const deleteTodo = (id) => {
-  todos = todos.filter((obj) => {
-    return obj.id !== id
-  })
+export async function deleteTodo(id) {
+  try {
+    const deletedTodo = await prisma.Todos.delete({
+      where: {
+        id: id,
+      },
+    })
+    console.log({ deletedTodo })
+  } catch (error) {
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === 'P2025'
+    ) {
+      console.log('Todo not found')
+    } else console.error(error)
+  }
 }
 
 export const updateTodo = ({ id, isDone }) => {
