@@ -3,9 +3,16 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "postgresql"
+  referentialIntegrity = "prisma"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+model Todos {
+  id      String @id
+  name    String
+  isDone  Boolean @default(false)
 }
