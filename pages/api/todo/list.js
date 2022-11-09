@@ -13,7 +13,7 @@ export const addTodo = async (name) => {
   return todo
 }
 
-export async function deleteTodo(id) {
+export const deleteTodo = async (id) => {
   try {
     const deletedTodo = await prisma.Todos.delete({
       where: {
@@ -31,24 +31,20 @@ export async function deleteTodo(id) {
   }
 }
 
-export const updateTodo = ({ id, isDone }) => {
-  // only isDone can be updated atm
-  let newTodos = []
-  todos.map((obj) => {
-    let newTodo = { ...obj }
-    if (obj.id == id) {
-      newTodo = {
-        id,
-        name: obj.name,
-        isDone,
-      }
-    }
-    newTodos.push(newTodo)
+export const updateTodo = async ({ id, isDone }) => {
+  const todo = await prisma.Todos.update({
+    where: {
+      id: id,
+    },
+    data: {
+      isDone: isDone,
+    },
   })
-  todos = newTodos
+
+  return todo
 }
 
-export async function getTodoList() {
+export const getTodoList = async () => {
   const todos = await prisma.Todos.findMany()
   return todos
 }
