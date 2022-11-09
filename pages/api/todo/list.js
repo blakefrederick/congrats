@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
 
-console.log('accessing list on congrats-api')
 let todos = [
   {
     id: uuidv4(),
@@ -18,6 +17,10 @@ let todos = [
     isDone: false,
   },
 ]
+
+export const getTodoList = () => {
+  return todos
+}
 
 export const addTodo = (name) => {
   let newTodo = {

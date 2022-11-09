@@ -10,6 +10,7 @@ async function addTodo(input, refresh) {
   await fetch(`/api/todo/add`, {
     method: 'POST',
     body: JSON.stringify({ input }),
+    mode: 'no-cors',
   })
 
   refresh()

@@ -6,6 +6,7 @@ async function update(id, isDone, refresh) {
   await fetch('/api/todo/update', {
     method: 'POST',
     body: JSON.stringify({ id, isDone }),
+    mode: 'no-cors',
   })
   {
     /* Note about the need for router.refresh here: https://beta.nextjs.org/docs/data-fetching/mutating */

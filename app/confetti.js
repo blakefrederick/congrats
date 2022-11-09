@@ -21,12 +21,12 @@ export default function Confetti() {
 
   return (
     <>
-        <canvas
-          id="confetti-target"
-          onClick={() => {
-            goConfetti()
-          }}
-        ></canvas>
+      <canvas
+        id="confetti-target"
+        onClick={() => {
+          goConfetti()
+        }}
+      ></canvas>
     </>
   )
 }
