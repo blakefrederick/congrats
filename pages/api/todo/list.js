@@ -1,26 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-
-let todos = [
-  {
-    id: uuidv4(),
-    name: 'Have an extremely good idea',
-    isDone: false,
-  },
-  {
-    id: uuidv4(),
-    name: 'Say thanks to the garbage man',
-    isDone: false,
-  },
-  {
-    id: uuidv4(),
-    name: 'Generate AI self',
-    isDone: false,
-  },
-]
-
-export const getTodoList = () => {
-  return todos
-}
+import { prisma } from '../../../app/db/client'
 
 export const addTodo = (name) => {
   let newTodo = {
@@ -54,6 +33,7 @@ export const updateTodo = ({ id, isDone }) => {
   todos = newTodos
 }
 
-export default function handler(req, res) {
-  res.status(200).json({ todos })
+export async function getTodoList() {
+  const todos = await prisma.Todos.findMany()
+  return todos
 }
