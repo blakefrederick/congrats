@@ -57,13 +57,14 @@ export default function TodoList() {
   console.log('todos', todos)
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 text-center">
       {isLoading ? (
         <Image
           src="https://media.tenor.com/vGAjEmjoJLUAAAAC/free-loader.gif"
           width="125"
           height="125"
           alt="loading"
+          className="my-0 mx-auto"
         />
       ) : todos.length && !isAllDone ? (
         <>
@@ -98,7 +99,10 @@ export default function TodoList() {
           </ul>
         </>
       ) : (
-        <Confetti />
+        <>
+          <h2 className="font-bold">Congrats!</h2>
+          <Confetti />
+        </>
       )}
       <AddNewTodo getTodos={getTodos} />
     </div>
