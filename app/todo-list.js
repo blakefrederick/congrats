@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 import Todo from './todo.js'
 import Confetti from './confetti.js'
@@ -10,6 +11,7 @@ import Confetti from './confetti.js'
 export default function TodoList() {
   const router = useRouter()
   const [todos, setTodos] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const getTodoList = async () => {
@@ -29,6 +31,7 @@ export default function TodoList() {
       })
       const json = await res.json()
       setTodos(json)
+      setIsLoading(false)
     }
     getTodoList()
     router.refresh()
@@ -38,14 +41,26 @@ export default function TodoList() {
 
   return (
     <div className="mt-10">
-      <h2 className="font-bold">{todos?.length ? 'Do' : 'Congrats!'}</h2>
-      {!todos?.length && <Confetti />}
-      <ul>
-        {todos &&
-          todos.map((todo) => {
-            return <Todo todo={todo} key={todo.id} />
-          })}
-      </ul>
+      {isLoading ? (
+        <Image
+          src="https://media.tenor.com/vGAjEmjoJLUAAAAC/free-loader.gif"
+          width="125"
+          height="125"
+          alt="loading"
+        />
+      ) : todos.length ? (
+        <>
+          <h2 className="font-bold">Do</h2>
+          <ul>
+            {todos &&
+              todos.map((todo) => {
+                return <Todo todo={todo} key={todo.id} />
+              })}
+          </ul>
+        </>
+      ) : (
+        <Confetti />
+      )}
     </div>
   )
 }
