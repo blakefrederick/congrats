@@ -4,8 +4,9 @@ import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-import Todo from './todo.js'
+// import Todo from './todo.js'
 import Confetti from './confetti.js'
+// import { getTodoList } from './list.js'
 // import { getTodoList } from './list'
 
 export default function TodoList() {
@@ -13,28 +14,41 @@ export default function TodoList() {
   const [todos, setTodos] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    const getTodoList = async () => {
-      console.log(process.env.SITE_URL)
-      // const res = await fetch(`${process.env.SITE_URL}/api/todo/get`, {
-      //   method: 'GET',
-      //   mode: 'no-cors',
-      //   // cache: 'no-store',
-      // })
-      // return res.json()
+  async function getTodos() {
+    const res = await fetch('/api/todo/get', {
+      method: 'GET',
+      mode: 'no-cors',
+    })
+    const json = await res.json()
+    setTodos(json)
+    setIsLoading(false)
+  }
 
-      const res = await fetch('/api/todo/get', {
-        // const res = await fetch(`${process.env.SITE_URL}/api/todo/get`, {
-        method: 'GET',
-        mode: 'no-cors',
-        // cache: 'no-store',
-      })
-      const json = await res.json()
-      setTodos(json)
-      setIsLoading(false)
+  async function update(id, isDone, refresh) {
+    await fetch('/api/todo/update', {
+      method: 'POST',
+      body: JSON.stringify({ id, isDone }),
+      mode: 'no-cors',
+    })
+    {
+      /* Note about the need for router.refresh here: https://beta.nextjs.org/docs/data-fetching/mutating */
     }
-    getTodoList()
-    router.refresh()
+    refresh()
+    getTodos()
+  }
+
+  async function deleteTodo(id, refresh) {
+    const response = await fetch(`/api/todo/delete?id=${id}`, {
+      method: 'DELETE',
+    })
+
+    refresh()
+    getTodos()
+  }
+
+  useEffect(() => {
+    console.log('running useEffect')
+    getTodos()
   }, [])
 
   console.log('todos', todos)
@@ -54,7 +68,29 @@ export default function TodoList() {
           <ul>
             {todos &&
               todos.map((todo) => {
-                return <Todo todo={todo} key={todo.id} />
+                return (
+                  <li key={todo.id}>
+                    <label className="cursor-pointer label">
+                      <input
+                        type="checkbox"
+                        className="checkbox checkbox-success mx-5 border-2"
+                        checked={todo.isDone}
+                        onChange={(e) => {
+                          update(todo.id, e.target.checked, router.refresh)
+                        }}
+                      />
+                      <span className="label-text">{todo.name}</span>
+                      <button
+                        className="btn btn-xs btn-error mx-2 text-white text-2xs opacity-90"
+                        onClick={() => {
+                          deleteTodo(todo.id, router.refresh)
+                        }}
+                      >
+                        X
+                      </button>
+                    </label>
+                  </li>
+                )
               })}
           </ul>
         </>

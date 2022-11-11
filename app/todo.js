@@ -12,6 +12,7 @@ async function update(id, isDone, refresh) {
     /* Note about the need for router.refresh here: https://beta.nextjs.org/docs/data-fetching/mutating */
   }
   refresh()
+  window.location.reload()
 }
 
 async function deleteTodo(id, refresh) {
@@ -20,6 +21,15 @@ async function deleteTodo(id, refresh) {
   })
 
   refresh()
+}
+
+async function getTodoList() {
+  const res = await fetch('/api/todo/get', {
+    method: 'GET',
+    mode: 'no-cors',
+  })
+  const json = await res.json()
+  router.refresh()
 }
 
 export default function Todo({ todo }) {
