@@ -14,6 +14,7 @@ export default function TodoList() {
   const router = useRouter()
   const [todos, setTodos] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+  const [isAllDone, setIsAllDone] = useState(false)
 
   async function getTodos() {
     const res = await fetch('/api/todo/get', {
@@ -22,6 +23,7 @@ export default function TodoList() {
     })
     const json = await res.json()
     setTodos(json)
+    setIsAllDone(json.every(({ isDone }) => isDone === true))
     setIsLoading(false)
   }
 
@@ -63,7 +65,7 @@ export default function TodoList() {
           height="125"
           alt="loading"
         />
-      ) : todos.length ? (
+      ) : todos.length && !isAllDone ? (
         <>
           <h2 className="font-bold">Do</h2>
           <ul>
