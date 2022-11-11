@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Confetti from './confetti.js'
 // import { getTodoList } from './list.js'
 // import { getTodoList } from './list'
+import AddNewTodo from './add-todo'
 
 export default function TodoList() {
   const router = useRouter()
@@ -97,6 +98,7 @@ export default function TodoList() {
       ) : (
         <Confetti />
       )}
+      <AddNewTodo getTodos={getTodos} />
     </div>
   )
 }
