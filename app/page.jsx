@@ -1,9 +1,8 @@
-import Image from 'next/image'
 import styles from './page.module.css'
 import TodoList from './todo-list'
 import AddNewTodo from './add-todo'
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>

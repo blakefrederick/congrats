@@ -38,3 +38,7 @@ canvas {
   left: 0;
   height: 900px;
 }
+
+input, button {
+  z-index: 42;
+}

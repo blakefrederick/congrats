@@ -43,7 +43,6 @@ export const updateTodo = async ({ id, isDone }) => {
 
   return todo
 }
-
 export const getTodoList = async () => {
   const todos = await prisma.Todos.findMany()
   return todos
