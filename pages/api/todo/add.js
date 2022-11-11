@@ -1,4 +1,4 @@
-import { addTodo } from './list'
+import { addTodo } from '../../../app/list'
 
 export default function handler(req, res) {
   if (req.method === 'POST') {

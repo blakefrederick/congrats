@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import { prisma } from '../../../app/db/client'
+import { prisma } from '../app/db/client'
 
 export const addTodo = async (name) => {
   const todo = await prisma.Todos.create({

@@ -1,4 +1,4 @@
-import { getTodoList } from './list'
+import { getTodoList } from '../../list'
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {

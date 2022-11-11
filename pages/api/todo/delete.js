@@ -1,4 +1,4 @@
-import { deleteTodo } from './list'
+import { deleteTodo } from '../../../app/list'
 
 export default function handler(req, res) {
   console.log('Hey from congrats-api delete')

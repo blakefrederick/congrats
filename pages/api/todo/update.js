@@ -1,4 +1,4 @@
-import { updateTodo } from './list'
+import { updateTodo } from '../../../app/list'
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
